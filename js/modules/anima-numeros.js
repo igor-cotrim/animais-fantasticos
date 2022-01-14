@@ -1,6 +1,6 @@
 const initAnimaNumeros = () => {
   const animaNumeros = () => {
-    const numeros = document.querySelectorAll("[data-numero]");
+    const numeros = document.querySelectorAll('[data-numero]');
 
     numeros.forEach((numero) => {
       let start = 0;
@@ -19,13 +19,13 @@ const initAnimaNumeros = () => {
   };
 
   const handleMutation = (mutation) => {
-    if (mutation[0].target.classList.contains("ativo")) {
+    if (mutation[0].target.classList.contains('ativo')) {
       observer.disconnect();
       animaNumeros();
     }
   };
 
-  const observerTarget = document.querySelector(".numeros");
+  const observerTarget = document.querySelector('.numeros');
   const observer = new MutationObserver(handleMutation);
 
   observer.observe(observerTarget, { attributes: true });
