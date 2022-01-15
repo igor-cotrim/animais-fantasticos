@@ -10,16 +10,16 @@ const initAnimacaoScroll = () => {
         const isSectionVisible = sectionTop - windowMid < 0;
 
         if (isSectionVisible) {
-          section.classList.add("ativo");
-        } else if (section.classList.contains("ativo")) {
-          section.classList.remove("ativo");
+          section.classList.add('ativo');
+        } else if (section.classList.contains('ativo')) {
+          section.classList.remove('ativo');
         }
       });
     };
 
     animaScroll();
 
-    window.addEventListener("scroll", animaScroll);
+    window.addEventListener('scroll', animaScroll);
   }
 };
 
