@@ -1,24 +1,43 @@
-/* eslint-disable node/no-unsupported-features/es-syntax */
-import outsiteClick from "./outside-click.js";
+import outsiteClick from './outside-click.js';
 
-const initDropdownMenu = () => {
-  const dropdownMenus = document.querySelectorAll("[data-dropdown]");
+export default class DropdownMenu {
+  constructor(dropdownMenus, events) {
+    this.dropdownMenus = document.querySelectorAll(dropdownMenus);
+    this.activeClass = 'active';
 
-  function handleClick(e) {
+    if (events === undefined) {
+      this.events = ['click', 'touchstart'];
+    } else {
+      this.events = events;
+    }
+
+    this.activeDropdownMenu = this.activeDropdownMenu.bind(this);
+  }
+
+  activeDropdownMenu(e) {
     e.preventDefault();
 
-    e.currentTarget.classList.add("active");
+    const element = e.currentTarget;
 
-    outsiteClick(this, ["click", "touchstart"], () => {
-      this.classList.remove("active");
+    element.classList.add(this.activeClass);
+
+    outsiteClick(element, this.events, () => {
+      element.classList.remove(this.activeClass);
     });
   }
 
-  dropdownMenus.forEach((item) => {
-    ["click", "touchstart"].forEach((userEvent) => {
-      item.addEventListener(userEvent, handleClick);
+  addDropdownMenuEvent = () => {
+    this.dropdownMenus.forEach((item) => {
+      this.events.forEach((userEvent) => {
+        item.addEventListener(userEvent, this.activeDropdownMenu);
+      });
     });
-  });
-};
+  };
 
-export default initDropdownMenu;
+  init = () => {
+    if (this.dropdownMenus.length) {
+      this.addDropdownMenuEvent();
+    }
+    return this;
+  };
+}
