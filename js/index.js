@@ -3,12 +3,12 @@ import Accordion from './modules/accordion.js';
 import TabNav from './modules/tab-nav.js';
 import Modal from './modules/modal.js';
 import Tooltip from './modules/tooltip.js';
-import fetchAnimais from './modules/fetch-animais.js';
-import fetchBitcoin from './modules/fetch-bitcoin.js';
 import ScrollAnima from './modules/scroll-anima.js';
 import DropdownMenu from './modules/dropdown-menu.js';
 import MenuMobile from './modules/menu-mobile.js';
 import Funcionamento from './modules/funcionamento.js';
+import fetchAnimais from './modules/fetch-animais.js';
+import fetchBitcoin from './modules/fetch-bitcoin.js';
 
 const scrollSuave = new ScrollSuave('[data-menu="suave"] a[href^="#"]');
 scrollSuave.init();
@@ -29,10 +29,6 @@ modal.init();
 const tooltip = new Tooltip('[data-tooltip]');
 tooltip.init();
 
-fetchAnimais('../../animais-api.json', '.numeros-grid');
-
-fetchBitcoin('https://blockchain.info/ticker', '.btc-preco');
-
 const scrollAnima = new ScrollAnima('[data-anime="scroll"]');
 scrollAnima.init();
 
@@ -44,3 +40,7 @@ menuMobile.init();
 
 const funcionamento = new Funcionamento('[data-semana]', 'aberto');
 funcionamento.init();
+
+fetchAnimais('../../animais-api.json', '.numeros-grid');
+
+fetchBitcoin('https://blockchain.info/ticker', '.btc-preco');
